@@ -1,6 +1,6 @@
 import React from 'react'
 import { useObserver } from 'mobx-react'
-import useStore from '../hooks/useStore'
+import useStore from '../../hooks/useStore'
 
 const Counter = () => {
   // hooks
