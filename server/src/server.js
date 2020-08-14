@@ -9,6 +9,7 @@ const { SERVER_PORT } = require('./constants')
 // middlewares
 app.use(require('cors')())
 app.use(logger('dev'))
+app.use(express.json())
 
 // index
 app.get('/', (req, res) =>
