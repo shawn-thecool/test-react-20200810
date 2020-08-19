@@ -1,20 +1,17 @@
-import { observable, action } from 'mobx'
-import {
-  getBanners,
-  getBannerById,
-  createBanner,
-  updateBanner,
-  deleteBanner,
-} from '../api/v1/banners'
+import { observable, action, computed } from 'mobx'
+import { getBanners, getBannerById, createBanner, updateBanner, deleteBanner } from '../api/v1/banners'
 // constants
 import { NETWORK_STATE } from '../constants'
+import { newCnt } from './banner.computed'
+
+// bannerStore
 
 const banner = observable({
   banners: [],
   networkState: NETWORK_STATE.PANDDING,
   // getter - computed
   get newCount() {
-    return this.banners.filter((banner) => banner.isNew).length
+    return computed(newCnt(this.banners))
   },
   // promise - api call
   getBanners: action('getBanners', () => {
@@ -54,3 +51,4 @@ const banner = observable({
 })
 
 export default banner
+

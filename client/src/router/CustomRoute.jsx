@@ -18,9 +18,8 @@ export const PublicRoute = ({ render, component: Component, ...rest }) => {
   )
 }
 // custom route - protected by authenticated(bool) route
-export const ProtectedRoute = ({ authenticated, ...rest }) =>
-  authenticated ? (
-    <PublicRoute {...rest} />
-  ) : (
-    <Redirect to={{ pathname: '/login' }} />
-  )
+export const ProtectedRoute = ({ authenticated, ...rest }) => {
+  const auth = authenticated 
+  console.log('auth!!')
+  return auth ? <PublicRoute {...rest} /> : <Redirect to={{ pathname: '/login' }} />
+}

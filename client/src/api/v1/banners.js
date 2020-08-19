@@ -1,18 +1,16 @@
 import { makeRequest } from '../index'
 
 export function getBanners() {
-  const requestConfig = {
+  return makeRequest({
     method: 'GET',
     url: '/api/v1/action-banners',
-  }
-  return makeRequest(requestConfig)
+  })
 }
 export function getBannerById(id) {
-  const requestConfig = {
+  return makeRequest({
     method: 'GET',
     url: `/api/v1/action-banners/${id}`,
-  }
-  return makeRequest(requestConfig)
+  })
 }
 export function createBanner() {
   const requestConfig = {

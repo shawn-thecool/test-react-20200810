@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useObserver } from 'mobx-react'
-import useStore from '../../hooks/useStore'
+import { useStore } from '../../stores'
 
 const ActionBannerList = () => {
   // hooks
@@ -9,6 +9,28 @@ const ActionBannerList = () => {
   useEffect(() => {
     banner.getBanners()
   }, [banner])
+
+  const ListItem = ({ id, name, isNew }) => (
+    <li key={id}>
+      <span>{id}</span>
+      <span>-{name}</span>
+      <span>-{String(isNew)}</span>
+      <input
+        type="button"
+        value="update"
+        onClick={() => {
+          banner.updateBanner({ id, name: 'updated', isNew })
+        }}
+      />
+      <input
+        type="button"
+        value="delete"
+        onClick={() => {
+          banner.deleteBanner(id)
+        }}
+      />
+    </li>
+  )
 
   return useObserver(() => (
     <div>
@@ -29,26 +51,8 @@ const ActionBannerList = () => {
         }}
       />
       <ul>
-        {banner.banners.map(({ id, name, isNew }) => (
-          <li key={id}>
-            <span>{id}</span>
-            <span>-{name}</span>
-            <span>-{String(isNew)}</span>
-            <input
-              type="button"
-              value="update"
-              onClick={() => {
-                banner.updateBanner({ id, name: 'updated', isNew })
-              }}
-            />
-            <input
-              type="button"
-              value="delete"
-              onClick={() => {
-                banner.deleteBanner(id)
-              }}
-            />
-          </li>
+        {banner.banners.map((banner) => (
+          <ListItem key={banner.id} {...banner} />
         ))}
       </ul>
     </div>

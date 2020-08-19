@@ -13,3 +13,9 @@ export const NETWORK_STATE = {
   DONE: 'done',
   ERROR: 'error',
 }
+
+export const GOOD_BAD_STATE = {
+  VERY_GOOD: '매우 좋음',
+  GOOD: '좋음',
+  BAD: '나쁨',
+}
